@@ -6,7 +6,11 @@ from account.forms import AddTransaction
 from django.http.response import HttpResponseNotAllowed
 from datetime import datetime
 
+
 def add_statement(request):
+    hist_trans = query_transaction(request)
+    todayreport = today_report(request)
+    profilereport = get_all_total(request)
     if request.method == 'POST':
         form = AddTransaction(request.POST)
         print(request.POST)
@@ -30,7 +34,12 @@ def add_statement(request):
             acc.save()
             return redirect('/')
         else:
-            return render(request, 'index.html', {'form': form})
+            return render(request, 'index.html', {
+                'form': form,
+                'hist_trans':hist_trans,
+                'today_report':todayreport,
+                'profilereport':profilereport
+                })
     else:
         return HttpResponseNotAllowed(['POST'])
 
