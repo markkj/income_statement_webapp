@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container ">
+    <div class="py-5 text-center">
+        
+        <h2>Sign In</h2>
+        <p class="lead">Welcome to my Income Statement project , </p>
+    </div>
+    <div class="container">
+        <form method="POST" action="" class="form-signin"> 
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success" id="submit" name="submit">Sign in</button>
+        </form>
+        <a href="{% url 'signup' %}">Sign Up</a>
+        {% if response %}
+        <div class="alert alert-danger" role="alert">
+            {{response}}
+        </div>
+        {% endif %}
+        
+    </div>
+   
+</div>
+
+{% endblock content %}
