@@ -151,7 +151,7 @@
 
       };
       var ctx = document.getElementById("ChartProfile");
-      var ChartToday = new Chart(ctx, {
+      var ChartProfile = new Chart(ctx, {
         type: 'horizontalBar',
         data: barChartData_profile,
         options: {
@@ -164,7 +164,7 @@
             text: 'ALL Report'
           },
           scales: {
-            yAxes: [{
+            xAxes: [{
                 ticks: {
                     beginAtZero: true
                 }
