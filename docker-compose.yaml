@@ -1,0 +1,23 @@
+version : '3'
+
+services:
+  db:
+    image: 'postgres',
+    environtment: 
+      POSTGRES_USER: 'postgres',
+      POSTGRES_PASSWORD: '',
+    networks:
+      - main
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000":"8000"
+    networks:
+      - main
+    depends_on:
+      - db
+networks:
+  main:
